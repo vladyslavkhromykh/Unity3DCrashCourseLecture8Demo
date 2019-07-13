@@ -2,24 +2,39 @@
 
 public class MouseSpawner : MonoBehaviour
 {
-    public int MaximumMouseCount = 10;
-    public GameObject MousePrefab;
+    public Mouse MousePrefab;
+    private Settings settings;
 
     private void Awake() {
-        for (int i = 0; i < MaximumMouseCount; i++)
+        settings = Resources.Load<Settings>("Settings");
+
+        EventsManager.MouseDead += OnMouseDead;
+        EventsManager.NewGame += OnNewGame;
+    }
+
+    private void OnNewGame()
+    {
+        for (int i = 0; i < settings.MouseMaximumCount; i++)
         {
             SpawnMouse();
         }
     }
 
-    public void MouseDie()
+    public void OnMouseDead(Mouse mouse)
     {
         SpawnMouse();
     }
 
     private void SpawnMouse()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(-100.0f, 100.0f), 0.0f, Random.Range(-100.0f, 100.0f));
-        Instantiate<GameObject>(MousePrefab, randomPosition, Quaternion.identity);
+        Vector3 randomPosition = new Vector3(
+            Random.Range(-settings.SpawnRadius, settings.SpawnRadius), 0.0f, Random.Range(-settings.SpawnRadius, settings.SpawnRadius));
+        Instantiate<Mouse>(MousePrefab, randomPosition, Quaternion.identity);
+    }
+
+    private void OnDestroy()
+    {
+        EventsManager.MouseDead -= OnMouseDead;
+        EventsManager.NewGame -= OnNewGame;
     }
 }

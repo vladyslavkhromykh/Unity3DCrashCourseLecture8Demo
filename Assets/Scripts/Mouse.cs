@@ -1,28 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Mouse : MonoBehaviour
 {
     [Range(0.5f, 2.0f)]
     public float Speed;
     public float DistanceToAttack;
-    public MouseSpawner spawner;
 
     private Player player;
-
     private Animator animator;
+    private Settings settings;
+    private bool isDead;
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
         animator = GetComponent<Animator>();
+        settings = Resources.Load<Settings>("Settings");
+        EventsManager.PlayerDead += OnPlayerDead;
     }
 
 
     private void Update()
     {
-        if (player == null)
+        if (player == null || player.isDead)
         {
             return;
         }
@@ -40,8 +40,13 @@ public class Mouse : MonoBehaviour
             animator.SetTrigger("PlayerMovedAway");
             Vector3 directionToPlayer = playerSurfacePosition - transform.position;
             directionToPlayer.Normalize();
-            transform.position += directionToPlayer * Speed * Time.deltaTime;
+            transform.position += directionToPlayer * settings.MouseMovementSpeed * Time.deltaTime;
         }
+    }
+
+    private void OnPlayerDead()
+    {
+        animator.SetTrigger("PlayerDead");
     }
 
     /// <summary>
@@ -59,7 +64,11 @@ public class Mouse : MonoBehaviour
 
     public void Die()
     {
-        spawner.MouseDie();
+        EventsManager.OnMouseDead(this);
     }
 
+    private void OnDestroy()
+    {
+        EventsManager.PlayerDead -= OnPlayerDead;
+    }
 }
