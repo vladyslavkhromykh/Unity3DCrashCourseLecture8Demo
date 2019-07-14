@@ -13,11 +13,19 @@ public class Mouse : MonoBehaviour
 
     private void Awake()
     {
+        EventsManager.PlayerDead += OnPlayerDead;
+        EventsManager.NewGame += OnNewGame;
+
         player = FindObjectOfType<Player>();
         animator = GetComponent<Animator>();
         settings = Resources.Load<Settings>("Settings");
-        EventsManager.PlayerDead += OnPlayerDead;
     }
+
+    private void OnNewGame()
+    {
+        Destroy(gameObject);
+    }
+
 
 
     private void Update()
@@ -82,5 +90,6 @@ public class Mouse : MonoBehaviour
     private void OnDestroy()
     {
         EventsManager.PlayerDead -= OnPlayerDead;
+        EventsManager.NewGame -= OnNewGame;
     }
 }

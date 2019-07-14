@@ -8,6 +8,12 @@ public class GUIController : MonoBehaviour
     private void Awake()
     {
         EventsManager.NewGame += OnNewGame;
+        EventsManager.PlayerDead += OnPlayerDead;
+    }
+
+    private void OnPlayerDead()
+    {
+        CreateScreen<GameoverScreen>();
     }
 
     private void OnNewGame()
@@ -15,8 +21,11 @@ public class GUIController : MonoBehaviour
         CreateScreen<GameplayScreen>();
     }
 
-    internal void OnDestroy()
+    private void OnDestroy()
     {
+        EventsManager.NewGame -= OnNewGame;
+        EventsManager.PlayerDead -= OnPlayerDead;
+
         Clear();
     }
 

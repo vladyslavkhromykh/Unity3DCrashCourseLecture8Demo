@@ -9,9 +9,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        EventsManager.NewGame += OnNewGame;
+
         Cursor.lockState = CursorLockMode.Locked;
         settings = Resources.Load<Settings>("Settings");
         hp = settings.PlayerMaximumHP;
+    }
+
+    private void OnNewGame()
+    {
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -58,9 +65,15 @@ public class Player : MonoBehaviour
         EventsManager.OnPlayerHPChanged(hp);
         if (hp == 0)
         {
+            Cursor.lockState = CursorLockMode.None;
             isDead = true;
             Destroy(GetComponentInChildren<SimpleShoot>());
             EventsManager.OnPlayerDead();
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventsManager.NewGame -= OnNewGame;
     }
 }
