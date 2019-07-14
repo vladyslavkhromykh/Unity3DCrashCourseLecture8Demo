@@ -5,6 +5,8 @@ public class Settings : ScriptableObject
 {
     public int SpawnRadius;
 
+    [Range(3, 10)]
+    public int PlayerMaximumAmmo;
     public float PlayerMovementSpeed;
     [Range(1, 10)]
     public int PlayerMaximumHP;

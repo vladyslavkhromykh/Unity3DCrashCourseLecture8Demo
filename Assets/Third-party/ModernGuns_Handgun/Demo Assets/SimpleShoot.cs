@@ -8,6 +8,15 @@ public class SimpleShoot : MonoBehaviour
     public Transform casingExitLocation;
     public float shotPower = 100f;
 
+    private Settings settings;
+    private int ammo;
+
+    private void Awake()
+    {
+        settings = Resources.Load<Settings>("Settings");
+        ammo = settings.PlayerMaximumAmmo;
+    }
+
     void Start()
     {
         if (barrelLocation == null)
@@ -16,10 +25,17 @@ public class SimpleShoot : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetButtonDown("Fire1"))
         {
-            GetComponent<Animator>().SetTrigger("Fire");
+            if (ammo == 0)
+            {
+                EventsManager.OnPlayerRanOutOfAmmo();
+            } else
+            {
+                GetComponent<Animator>().SetTrigger("Fire");
+                ammo--;
+                EventsManager.OnPlayerShot(ammo);
+            }
         }
     }
 

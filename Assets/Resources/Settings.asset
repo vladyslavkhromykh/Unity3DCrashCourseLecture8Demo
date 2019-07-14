@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   SpawnRadius: 50
+  PlayerMaximumAmmo: 7
   PlayerMovementSpeed: 3
   PlayerMaximumHP: 5
   MouseMovementSpeed: 1.5
