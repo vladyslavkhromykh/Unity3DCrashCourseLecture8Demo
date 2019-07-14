@@ -2,6 +2,7 @@
 
 public class Player : MonoBehaviour
 {
+    public SimpleShoot gun;
     public bool isDead { get; private set; }
     private Settings settings;
     private int hp;

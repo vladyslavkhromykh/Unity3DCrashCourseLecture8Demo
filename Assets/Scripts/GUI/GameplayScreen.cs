@@ -12,6 +12,12 @@ public sealed class GameplayScreen : GUIScreen
         settings = Resources.Load<Settings>("Settings");
         EventsManager.PlayerHPChanged += OnPlayerHPChanged;
         EventsManager.PlayerShot += OnPlayerShot;
+        EventsManager.PlayerAmmoLoad += OnPlayerAmmoLoad;
+    }
+
+    private void OnPlayerAmmoLoad(int ammo)
+    {
+        this.Ammo.text = ammo.ToString();
     }
 
     private void Start()
@@ -34,5 +40,6 @@ public sealed class GameplayScreen : GUIScreen
     {
         EventsManager.PlayerHPChanged -= OnPlayerHPChanged;
         EventsManager.PlayerShot -= OnPlayerShot;
+        EventsManager.PlayerAmmoLoad -= OnPlayerAmmoLoad;
     }
 }

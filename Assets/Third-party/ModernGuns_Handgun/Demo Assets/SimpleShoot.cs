@@ -27,16 +27,26 @@ public class SimpleShoot : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (ammo == 0)
-            {
-                EventsManager.OnPlayerRanOutOfAmmo();
-            } else
+
+            if (ammo > 0)
             {
                 GetComponent<Animator>().SetTrigger("Fire");
                 ammo--;
+
+                if (ammo == 0)
+                {
+                    EventsManager.OnPlayerRanOutOfAmmo();
+                }
+
                 EventsManager.OnPlayerShot(ammo);
             }
         }
+    }
+
+    public void LoadAmmo()
+    {
+        ammo = settings.PlayerMaximumAmmo;
+        EventsManager.OnPlayerAmmoLoad(ammo);
     }
 
     void Shoot()
@@ -52,6 +62,7 @@ public class SimpleShoot : MonoBehaviour
         casing = Instantiate(casingPrefab, casingExitLocation.position, casingExitLocation.rotation) as GameObject;
         casing.GetComponent<Rigidbody>().AddExplosionForce(550f, (casingExitLocation.position - casingExitLocation.right * 0.3f - casingExitLocation.up * 0.6f), 1f);
         casing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(10f, 1000f)), ForceMode.Impulse);
+        Destroy(casing.gameObject, 1.0f);
     }
 
 

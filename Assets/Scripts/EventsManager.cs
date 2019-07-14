@@ -8,6 +8,7 @@ public class EventsManager : MonoBehaviour
     public static event Action PlayerRanOutOfAmmo;
     public static event Action<int> PlayerHPChanged;
     public static event Action PlayerDead;
+    public static event Action<int> PlayerAmmoLoad;
     public static event Action<int> PlayerShot;
 
     public static void OnNewGame() => NewGame?.Invoke();
@@ -16,4 +17,5 @@ public class EventsManager : MonoBehaviour
     public static void OnPlayerHPChanged(int hp) => PlayerHPChanged?.Invoke(hp);
     public static void OnPlayerDead() => PlayerDead?.Invoke();
     public static void OnPlayerShot(int ammo) => PlayerShot?.Invoke(ammo);
+    public static void OnPlayerAmmoLoad(int ammo) => PlayerAmmoLoad.Invoke(ammo);
 }
