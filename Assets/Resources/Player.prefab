@@ -1,5 +1,45 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &3859216549612515724
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6102516536288175960}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d63b84f580d7654c942b876a873080f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3103260474866601472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6102516536288175960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be84e4d7829855419c06b94e56bd135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1900734910723676, guid: 67c3c990b6c48af469e31db314977502,
+    type: 3}
+  casingPrefab: {fileID: 1482960508195586, guid: 91dcfdffdc6d38e47916b9c549e26dac,
+    type: 3}
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: e802c9c5b472d2345a808aca4bc81014,
+    type: 3}
+  barrelLocation: {fileID: 6105174433487654612}
+  casingExitLocation: {fileID: 6104858002769296416}
+  shotPower: 750
 --- !u!1 &6104206071075024967
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +172,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6104206072945869925}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -224,8 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afe5c13c2b50984384d8f4fb3687ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
-  MaximumHP: 10
 --- !u!54 &56663642
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -299,9 +337,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2b3bff7c9d735441b445bb19a2fe9cc, type: 3}
+--- !u!1 &6102516536288175960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1690370004738036, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6104206072628426924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6099890800255205678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4878850369403266, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6104206072628426924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6104858002769296416 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4133162213901452, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6104206072628426924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6105174433487654612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4381382391936632, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
     type: 3}
   m_PrefabInstance: {fileID: 6104206072628426924}
   m_PrefabAsset: {fileID: 0}

@@ -1,17 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SimpleShoot : MonoBehaviour
 {
-
-    public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
     public Transform barrelLocation;
     public Transform casingExitLocation;
-
-
     public float shotPower = 100f;
 
     void Start()
@@ -22,6 +16,7 @@ public class SimpleShoot : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetButtonDown("Fire1"))
         {
             GetComponent<Animator>().SetTrigger("Fire");
@@ -30,17 +25,9 @@ public class SimpleShoot : MonoBehaviour
 
     void Shoot()
     {
-        //  GameObject bullet;
-        //  bullet = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
-        // bullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
-
-        GameObject tempFlash;
-       Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
-       tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
-
-       // Destroy(tempFlash, 0.5f);
-        //  Instantiate(casingPrefab, casingExitLocation.position, casingExitLocation.rotation).GetComponent<Rigidbody>().AddForce(casingExitLocation.right * 100f);
-       
+       GameObject tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
+       Destroy(tempFlash, 0.5f);
+        GetComponentInParent<Player>().OnShot();
     }
 
     void CasingRelease()

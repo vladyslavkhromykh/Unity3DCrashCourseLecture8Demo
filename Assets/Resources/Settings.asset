@@ -16,5 +16,5 @@ MonoBehaviour:
   PlayerMovementSpeed: 3
   PlayerMaximumHP: 5
   MouseMovementSpeed: 1.5
-  MouseMaximumCount: 3
-  EnviromentCount: 100
+  MouseMaximumCount: 6
+  EnviromentCount: 139

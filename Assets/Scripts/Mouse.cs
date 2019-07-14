@@ -22,6 +22,11 @@ public class Mouse : MonoBehaviour
 
     private void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         if (player == null || player.isDead)
         {
             return;
@@ -64,6 +69,13 @@ public class Mouse : MonoBehaviour
 
     public void Die()
     {
+        if (isDead)
+        {
+            return;
+        }
+
+        isDead = true;
+        animator.SetTrigger("MouseDead");
         EventsManager.OnMouseDead(this);
     }
 
