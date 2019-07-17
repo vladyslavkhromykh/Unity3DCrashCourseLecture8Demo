@@ -26,8 +26,6 @@ public class Mouse : MonoBehaviour
         Destroy(gameObject);
     }
 
-
-
     private void Update()
     {
         if (isDead)
@@ -72,6 +70,7 @@ public class Mouse : MonoBehaviour
         if (distanceToPlayer < DistanceToAttack)
         {
             player.GetHit();
+            EventsManager.OnMouseHit();
         }
     }
 
